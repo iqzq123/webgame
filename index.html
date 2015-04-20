@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webgame</title>
+	<meta charset="utf-8" />
+	<script type="text/javascript" src="js/DisplayObject.js" charset="utf-8"></script>
+</head>
+<body>
+	<canvas id="game" width="800" height="600"></canvas>
+	<img src="assets/npc.png" alt="npc" id="npc" style="display:none" />
+	<script type="text/javascript">
+	var canvas = document.getElementById('game');
+	var ctx = canvas.getContext('2d');
+	var drawable = document.getElementById('npc');
+	
+	var npc = new Display();
+	npc.initialize({
+		x: 10, y: 20,
+		regX: 300, regY: 300,
+		scaleX: 1, scaleY: 1,
+		alpha: 0.7,
+		drawable : drawable,
+		update: function() {
+			// this.rotation--;
+		}
+	});
+
+	ctx.clearRect(0, 0, 800, 600);
+	npc._update();
+	npc._render(ctx);
+
+	setInterval(function() {
+		ctx.clearRect(0, 0, 800, 600);
+		npc._update();
+		npc._render(ctx);
+	}, 30);
+	</script>
+</body>
+</html>
